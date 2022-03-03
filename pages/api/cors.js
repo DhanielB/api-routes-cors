@@ -23,9 +23,5 @@ export default async function handler(req, res) {
     res.status(200).json({
       date:dynamicDate
     })
-  }else{
-    res.status(403).json({
-      forbidden: "Usúario não permitido!"
-    })
   }
 }
