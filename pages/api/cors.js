@@ -15,7 +15,5 @@ export default async function handler(req, res) {
   await cors(req, res)
 
   // Rest of the API logic
-  const dynamicDate = Date.now().GMTtoString()
-
-  res.json({ date: dynamicDate })
+  res.json({ sucess: "ok" })
 }
