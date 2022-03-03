@@ -15,5 +15,20 @@ export default async function handler(req, res) {
   await cors(req, res)
 
   // Rest of the API logic
-  res.json({ body: req.body })
+  if(req.body) {
+    if(req.body.name == "Dhaniel") {
+      const dynamicDate = Date.now().toGMTString()
+      res.status(200).json({
+        date:dynamicDate
+      })
+    }else{
+      res.status(403).json({
+        forbidden: "Usúario não permitido!"
+      })
+    }
+  }else{
+    res.status(403).json({
+      forbidden: "Usúario body vazio!"
+    })
+  }
 }
