@@ -18,6 +18,7 @@ export default async function handler(req, res) {
   if(req.body) {
     res.json(req.body)
   }
+  
   if(req.body.name == "Dhaniel") {
     const dynamicDate = Date.now().toGMTString()
     res.status(200).json({
