@@ -15,14 +15,15 @@ export default async function handler(req, res) {
   await cors(req, res)
 
   // Rest of the API logic
-  if(req.body) {
-    res.json(req.body)
-  }
-  
   if(req.body.name == "Dhaniel") {
-    const dynamicDate = Date.now().toGMTString()
     res.status(200).json({
-      date:dynamicDate
+      loggued:"Logado!",
+      body:req.body
+    })
+  }else{
+    res.status(200).json({
+      not_loggued:"Não logado!",
+      body:req.body
     })
   }
 }
