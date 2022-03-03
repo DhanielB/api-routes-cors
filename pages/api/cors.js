@@ -15,5 +15,5 @@ export default async function handler(req, res) {
   await cors(req, res)
 
   // Rest of the API logic
-  res.json({ sucess: "ok" })
+  res.json({ body: req.body })
 }
