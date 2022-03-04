@@ -15,6 +15,7 @@ export default async function handler(req, res) {
   await cors(req, res)
 
   // Rest of the API logic
+  console.log("Initialize api...")
   if(process.env.API_KEY == req.body.key) {
     res.status(200).json({
       sucess:"ok",
