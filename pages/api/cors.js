@@ -15,14 +15,18 @@ export default async function handler(req, res) {
   await cors(req, res)
 
   // Rest of the API logic
-  if(req.body.name == "Dhaniel") {
+  if(process.env.API_KEY == req.body.key) {
     res.status(200).json({
-      loggued:"Logado!",
+      sucess:"ok",
+      status:200,
+      response: "Logado com sucesso...",
       body:req.body
     })
   }else{
-    res.status(200).json({
-      not_loggued:"Não logado!",
+    res.status(403).json({
+      sucess:"ok",
+      status:403,
+      response: "Não logado com sucesso...",
       body:req.body
     })
   }
