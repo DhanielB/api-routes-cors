@@ -8,9 +8,10 @@ export default function Index() {
   )
 }
 
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export async function getServerSideProps() {
-  function delay(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-  delay(5000)
+  await delay(10000)
 }
