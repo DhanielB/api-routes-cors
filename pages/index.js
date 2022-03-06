@@ -13,5 +13,5 @@ function delay(ms) {
 }
 
 export async function getServerSideProps() {
-  await delay(10000)
+  await delay(5000)
 }
