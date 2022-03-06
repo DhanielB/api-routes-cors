@@ -7,3 +7,10 @@ export default function Index() {
     </p>
   )
 }
+
+export async function getServerSideProps() {
+  function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  delay(5000)
+}
