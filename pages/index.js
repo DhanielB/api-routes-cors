@@ -10,6 +10,6 @@ export default function Index({ data }) {
 }
 
 export async function getServerSideProps() {
-  data = "test"
+  const data = "test"
   return { props: { data } }
 }
