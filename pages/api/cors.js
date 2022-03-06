@@ -30,7 +30,7 @@ export default async function handler(req, res) {
       status:200,
       response: "Logado com sucesso!",
       body:req.body,
-      params:router.query
+      params:router
     })
   }else{
     console.log("[Server] Initialized API")
@@ -41,7 +41,7 @@ export default async function handler(req, res) {
       status:403,
       response: "Não logado...",
       body:req.body,
-      params:router.query
+      params:router
     })
     console.log("[Server] Sended RESPONSE in JSON!")
   }
