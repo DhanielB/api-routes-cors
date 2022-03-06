@@ -1,4 +1,4 @@
-function Index() {
+export default function Index() {
   return (
     <p>
       To test the CORS route, open the console in a new tab on a different
@@ -14,4 +14,5 @@ function delay(ms) {
 
 export async function getServerSideProps() {
   await delay(5000)
+  return
 }
