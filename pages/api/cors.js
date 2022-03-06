@@ -1,4 +1,5 @@
 import Cors from 'cors'
+import { useRouter } from 'next/router'
 import initMiddleware from '../../lib/init-middleware'
 
 // Initialize the cors middleware
@@ -16,6 +17,9 @@ export default async function handler(req, res) {
   await cors(req, res)
   console.log("[Server] Initialized CORS!")
   // Rest of the API logic
+  console.log("[Server] Creating Router...")
+  const router = useRouter()
+  console.log("[Server] Created Router!")
   console.log("[Server] Initializing API...")
   if(process.env.API_KEY == req.body.key) {
     console.log("[Server] Initialized API!")
@@ -25,7 +29,8 @@ export default async function handler(req, res) {
       sucess:"ok",
       status:200,
       response: "Logado com sucesso!",
-      body:req.body
+      body:req.body,
+      params:router.query
     })
   }else{
     console.log("[Server] Initialized API")
@@ -35,7 +40,8 @@ export default async function handler(req, res) {
       sucess:"forbidden",
       status:403,
       response: "Não logado...",
-      body:req.body
+      body:req.body,
+      params:router.query
     })
     console.log("[Server] Sended RESPONSE in JSON!")
   }
