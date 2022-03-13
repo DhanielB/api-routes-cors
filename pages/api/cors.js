@@ -46,7 +46,7 @@ export default async function handler(req, res) {
     console.log("[Server] Sending RESPONSE in JSON...")
     const users = await authToDatabase()
     res.status(200).json({
-      users
+      user:users
     })
   }else{
     console.log("[Server] Initialized API")
