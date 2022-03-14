@@ -3,14 +3,14 @@ import { useRouter } from 'next/router'
 import initMiddleware from '../../lib/init-middleware'
 import { MongoClient } from "mongodb"
 
-async function authToDatabase() {
+async function authToDatabase(database, collection_database) {
     const url = process.env.MONGODB_URL
 
     const client = new MongoClient(url)
 
     try {
         await client.connect()
-        const collection = client.db("myFirstDatabase").collection("users")
+        const collection = client.db(database).collection(collection_database)
 
         const response = await collection.findOne();
         
@@ -75,22 +75,15 @@ export default async function handler(req, res) {
   console.log("[Server] Initialized CORS!")
   // Rest of the API logic
   console.log("[Server] Initializing API...")
-  if(process.env.API_KEY == req.body.key) {
-    console.log("[Server] Initialized API!")
-    console.log("[Server] Correct key API!")
-    console.log("[Server] Sending RESPONSE in JSON...")
-    const users = await authToDatabase()
-    res.status(200).json({
-      user:users
-    })
-  }else{
-    console.log("[Server] Initialized API")
-    console.log("[Server] Invalid key API see it on logs...")
-    console.log("[Server] Sending RESPONSE in JSON...")
-    res.status(403).json({
-      sucess:"forbidden",
-      status:403,
-    })
-    console.log("[Server] Sended RESPONSE in JSON!")
+  console.log("[Server] Initialized API!")
+  console.log("[Server] Correct key API!")
+  console.log("[Server] Sending RESPONSE in JSON...")
+  if(req.body.method == 'INSERT') {
+      insertDatabase(req.body.database, req.body.collection, req.body.query)
   }
+  if(req.body.method == 'DELETE') {
+      deleteDatabase(req.body.database, req.body.collection, req.body.query)
+  }
+  const users = await authToDatabase("myFirstDatabase", "users")
+  res.status(200).json(users)
 }
