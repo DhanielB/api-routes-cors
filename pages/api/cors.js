@@ -12,7 +12,7 @@ async function authToDatabase(database, collection_database) {
         await client.connect()
         const collection = client.db(database).collection(collection_database)
 
-        const response = await collection.findOne();
+        const response = await collection.find().toArray
         
         return response
 
