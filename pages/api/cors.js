@@ -2,7 +2,7 @@ import Cors from 'cors'
 import { useRouter } from 'next/router'
 import initMiddleware from '../../lib/init-middleware'
 import { MongoClient } from "mongodb"
-
+//0
 async function authToDatabase(database, collection_database) {
     const url = process.env.MONGODB_URL
 
@@ -74,7 +74,7 @@ export default async function handler(req, res) {
   console.log("[Server] Initializing API...")
   console.log("[Server] Initialized API!")
   console.log("[Server] Correct key API!")
-  console.log("[Server] Sending RESPONSE in JSON...")
+  console.log("[Server] Sending REsSPONSE in JSON...")
   if(req.body.method == 'INSERT') {
       insertDatabase(req.body.database, req.body.collection, req.body.query)
   }
