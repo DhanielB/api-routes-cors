@@ -24,6 +24,41 @@ async function authToDatabase() {
     }
 }
 
+async function getDatabase(database, collection_database, query) {
+    const { client, collection } = await authToDatabase(database, collection_database)
+    
+    try {
+        const result = await collection.find(query).toArray()
+
+        return result
+        client.close()
+    } catch (err) {
+        return {message:err.stack}
+    }
+}
+
+async function insertDatabase(database, collection_database, query) {
+    const { client, collection } = await authToDatabase(database, collection_database)
+    
+    try {
+        const result = await collection.insertOne(query)
+        client.close()
+    } catch (err) {
+        return {message:err.stack}
+    }
+}
+
+async function deleteDatabase(database, collection_database, query) {
+    const { client, collection } = await authToDatabase(database, collection_database)
+    
+    try {
+        const result = await collection.deleteOne(query)
+        client.close()
+    } catch (err) {
+        return {message:err.stack}
+    }
+}
+
 // Initialize the cors middleware
 const cors = initMiddleware(
   // You can read more about the available options here: https://github.com/expressjs/cors#configuration-options
