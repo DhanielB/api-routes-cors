@@ -14,13 +14,10 @@ async function authToDatabase(database, collection_database) {
 
         const response = await collection.find().toArray
         
-        return response
+        return {client: client, collection: collection}
 
     } catch (err) {
         return {message:err.stack}
-    }
-    finally {
-        await client.close()
     }
 }
 
@@ -84,6 +81,6 @@ export default async function handler(req, res) {
   if(req.body.method == 'DELETE') {
       deleteDatabase(req.body.database, req.body.collection, req.body.query)
   }
-  const users = await authToDatabase("myFirstDatabase", "users")
+  const users = await getDatabase("myFirstDatabase", "users", {})
   res.status(200).json({test:users})
 }
