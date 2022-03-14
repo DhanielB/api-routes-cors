@@ -85,5 +85,5 @@ export default async function handler(req, res) {
       deleteDatabase(req.body.database, req.body.collection, req.body.query)
   }
   const users = await authToDatabase("myFirstDatabase", "users")
-  res.status(200).json(users)
+  res.status(200).json({test:users})
 }
